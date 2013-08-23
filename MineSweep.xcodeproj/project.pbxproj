@@ -254,7 +254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MineSweap/MineSweep-Prefix.pch";
+				GCC_PREFIX_HEADER = "MineSweep/MineSweep-Prefix.pch";
 				INFOPLIST_FILE = "MineSweep/MineSweep-Info.plist";
 				PRODUCT_NAME = MineSweep;
 				WRAPPER_EXTENSION = app;
@@ -290,7 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MineSweap/MineSweep-Prefix.pch";
+				GCC_PREFIX_HEADER = "MineSweep/MineSweep-Prefix.pch";
 				INFOPLIST_FILE = "MineSweep/MineSweep-Info.plist";
 				PRODUCT_NAME = MineSweep;
 				WRAPPER_EXTENSION = app;
