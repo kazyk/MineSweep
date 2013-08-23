@@ -48,8 +48,8 @@ static char kKVOContextOpened;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    //マスをタッチしたときのアニメーション
     self.layer.borderColor = self.color.CGColor;
-
     CABasicAnimation *border = [CABasicAnimation animationWithKeyPath:@"borderWidth"];
     border.fromValue = @3.0;
     border.toValue = @0.0;
@@ -61,6 +61,7 @@ static char kKVOContextOpened;
     bg.duration = 0.7;
     [self.layer addAnimation:bg forKey:@"bg"];
 
+    //superviewにeventを伝播させる
     [super touchesBegan:touches withEvent:event];
 }
 
