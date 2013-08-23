@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19DE40677EA25B1BBDB10B13 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE47C9ADD7908B01F3E915 /* Default@2x.png */; };
+		19DE41937ACCCE5235DEB6FF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE4E045A41C6F18F4D6ACA /* Default-568h@2x.png */; };
+		19DE4386E3305A041E7156F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DE4F58F301FF17E9253766 /* Foundation.framework */; };
+		19DE4415F7E6A957AA4DBD61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE41D2858FC72C04488362 /* AppDelegate.m */; };
+		19DE44BD23DAD01C0EA559D1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DE458A83BD6BAD9C02745C /* QuartzCore.framework */; };
+		19DE4608728597BE6165ADE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19DE449F5465739AC76A56A4 /* InfoPlist.strings */; };
+		19DE46959A7812B9A67246C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DE490BABBC87C302E35754 /* CoreGraphics.framework */; };
+		19DE46B64B31777CFAC1DD59 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DE44F3E3CF604C1E20DCDD /* Default.png */; };
+		19DE46EFB9477B521F2D8588 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DE4B8EB47218AED5F4E8B5 /* UIKit.framework */; };
+		19DE470E1608D79200DACE68 /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE470EA8C8272052322CFC /* Square.m */; };
+		19DE482431163F7E6DD7E42F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE4DD743E48F2F3C28103D /* ViewController.m */; };
+		19DE49320438686C8158A20B /* SquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE45064700109B862291E3 /* SquareView.m */; };
+		19DE495BE0079F451E97DD6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE431A3C96FB209EAFEE2D /* main.m */; };
+		19DE4B68BD3BE47AA96B2C8F /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE4C6655A0D1B7DF799596 /* BoardView.m */; };
+		19DE4C45D84AADBDB45C6E4E /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE4F95284E5D43AD4B0AE5 /* Game.m */; };
+		19DE4C72EF135DBE43215493 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19DE4F30CA7DE0E37D2953D7 /* MainStoryboard.storyboard */; };
+		19DE4D59EC03331993595F67 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE43569EE1BE078626DBA0 /* Board.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		19DE41D2858FC72C04488362 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		19DE431A3C96FB209EAFEE2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		19DE431E2D3F9E3B6413DD0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		19DE43569EE1BE078626DBA0 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
+		19DE438A0DF519A113F8AE09 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		19DE44F3E3CF604C1E20DCDD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		19DE45064700109B862291E3 /* SquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareView.m; sourceTree = "<group>"; };
+		19DE4565AD2F4A6ABCDEFC92 /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
+		19DE458A83BD6BAD9C02745C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		19DE45BDF1E1D8E9F93010AC /* MineSweep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MineSweep.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19DE470EA8C8272052322CFC /* Square.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
+		19DE4746BE0C34FF0E46A2CB /* MineSweep-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "MineSweep-Info.plist"; sourceTree = "<group>"; };
+		19DE47C9ADD7908B01F3E915 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		19DE484F9FF800BD3C41BCD1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		19DE490BABBC87C302E35754 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		19DE49B5E54E8E42B5757C8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		19DE4B22764683F47A75EFFF /* SquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareView.h; sourceTree = "<group>"; };
+		19DE4B8D7C5727EC89898C41 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		19DE4B8EB47218AED5F4E8B5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		19DE4C6655A0D1B7DF799596 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		19DE4D4A2FA88058607ADFE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		19DE4DA0C5778F693B3B1008 /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Square.h; sourceTree = "<group>"; };
+		19DE4DD743E48F2F3C28103D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		19DE4E045A41C6F18F4D6ACA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		19DE4F58F301FF17E9253766 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		19DE4F95284E5D43AD4B0AE5 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		19DE4FE7CA1AE411F992A517 /* MineSweep-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MineSweep-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		19DE4238D0F5CC2FA31F0E61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19DE46EFB9477B521F2D8588 /* UIKit.framework in Frameworks */,
+				19DE4386E3305A041E7156F4 /* Foundation.framework in Frameworks */,
+				19DE46959A7812B9A67246C1 /* CoreGraphics.framework in Frameworks */,
+				19DE44BD23DAD01C0EA559D1 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19DE40E51682752E11EB34A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19DE45BDF1E1D8E9F93010AC /* MineSweep.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19DE4442329C565D98E9111C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				19DE4746BE0C34FF0E46A2CB /* MineSweep-Info.plist */,
+				19DE449F5465739AC76A56A4 /* InfoPlist.strings */,
+				19DE431A3C96FB209EAFEE2D /* main.m */,
+				19DE4FE7CA1AE411F992A517 /* MineSweep-Prefix.pch */,
+				19DE44F3E3CF604C1E20DCDD /* Default.png */,
+				19DE47C9ADD7908B01F3E915 /* Default@2x.png */,
+				19DE4E045A41C6F18F4D6ACA /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19DE460F0940510816D6BCCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19DE4B8EB47218AED5F4E8B5 /* UIKit.framework */,
+				19DE4F58F301FF17E9253766 /* Foundation.framework */,
+				19DE490BABBC87C302E35754 /* CoreGraphics.framework */,
+				19DE458A83BD6BAD9C02745C /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		19DE49165366F1DF78F26FE7 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				19DE4F95284E5D43AD4B0AE5 /* Game.m */,
+				19DE438A0DF519A113F8AE09 /* Game.h */,
+				19DE43569EE1BE078626DBA0 /* Board.m */,
+				19DE4565AD2F4A6ABCDEFC92 /* Board.h */,
+				19DE470EA8C8272052322CFC /* Square.m */,
+				19DE4DA0C5778F693B3B1008 /* Square.h */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		19DE4CCBABCD449D3932AC52 = {
+			isa = PBXGroup;
+			children = (
+				19DE40E51682752E11EB34A2 /* Products */,
+				19DE460F0940510816D6BCCE /* Frameworks */,
+				19DE4FA3F064408AF35930F6 /* MineSweep */,
+			);
+			sourceTree = "<group>";
+		};
+		19DE4EF249EEA1D5F0384E49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19DE4C6655A0D1B7DF799596 /* BoardView.m */,
+				19DE4B8D7C5727EC89898C41 /* BoardView.h */,
+				19DE45064700109B862291E3 /* SquareView.m */,
+				19DE4B22764683F47A75EFFF /* SquareView.h */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19DE4FA3F064408AF35930F6 /* MineSweep */ = {
+			isa = PBXGroup;
+			children = (
+				19DE4442329C565D98E9111C /* Supporting Files */,
+				19DE49B5E54E8E42B5757C8C /* AppDelegate.h */,
+				19DE41D2858FC72C04488362 /* AppDelegate.m */,
+				19DE4F30CA7DE0E37D2953D7 /* MainStoryboard.storyboard */,
+				19DE484F9FF800BD3C41BCD1 /* ViewController.h */,
+				19DE4DD743E48F2F3C28103D /* ViewController.m */,
+				19DE4EF249EEA1D5F0384E49 /* Views */,
+				19DE49165366F1DF78F26FE7 /* Game */,
+			);
+			path = MineSweep;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		19DE4C5164B69069124F8A9A /* MineSweep */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19DE48A4DFF36EFCBAB15B76 /* Build configuration list for PBXNativeTarget "MineSweep" */;
+			buildPhases = (
+				19DE4EA79EBBDDFE0F1C93A7 /* Sources */,
+				19DE4238D0F5CC2FA31F0E61 /* Frameworks */,
+				19DE4C615035E079154418F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MineSweep;
+			productName = MineSweap;
+			productReference = 19DE45BDF1E1D8E9F93010AC /* MineSweep.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		19DE4DD82D7BFB208C6828E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+			};
+			buildConfigurationList = 19DE49DDB51671EF188CD583 /* Build configuration list for PBXProject "MineSweep" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 19DE4CCBABCD449D3932AC52;
+			productRefGroup = 19DE40E51682752E11EB34A2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				19DE4C5164B69069124F8A9A /* MineSweep */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		19DE4C615035E079154418F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19DE4608728597BE6165ADE0 /* InfoPlist.strings in Resources */,
+				19DE46B64B31777CFAC1DD59 /* Default.png in Resources */,
+				19DE40677EA25B1BBDB10B13 /* Default@2x.png in Resources */,
+				19DE41937ACCCE5235DEB6FF /* Default-568h@2x.png in Resources */,
+				19DE4C72EF135DBE43215493 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19DE4EA79EBBDDFE0F1C93A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19DE495BE0079F451E97DD6B /* main.m in Sources */,
+				19DE4415F7E6A957AA4DBD61 /* AppDelegate.m in Sources */,
+				19DE482431163F7E6DD7E42F /* ViewController.m in Sources */,
+				19DE4C45D84AADBDB45C6E4E /* Game.m in Sources */,
+				19DE4D59EC03331993595F67 /* Board.m in Sources */,
+				19DE470E1608D79200DACE68 /* Square.m in Sources */,
+				19DE4B68BD3BE47AA96B2C8F /* BoardView.m in Sources */,
+				19DE49320438686C8158A20B /* SquareView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		19DE449F5465739AC76A56A4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19DE4D4A2FA88058607ADFE7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		19DE4F30CA7DE0E37D2953D7 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19DE431E2D3F9E3B6413DD0C /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		19DE4077C3AB12C25F445782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MineSweap/MineSweep-Prefix.pch";
+				INFOPLIST_FILE = "MineSweep/MineSweep-Info.plist";
+				PRODUCT_NAME = MineSweep;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		19DE4496761BCB46B9344F87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		19DE45B509C0ABB403D8A26C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MineSweap/MineSweep-Prefix.pch";
+				INFOPLIST_FILE = "MineSweep/MineSweep-Info.plist";
+				PRODUCT_NAME = MineSweep;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		19DE4B7A8585353A929E88AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19DE48A4DFF36EFCBAB15B76 /* Build configuration list for PBXNativeTarget "MineSweep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19DE45B509C0ABB403D8A26C /* Release */,
+				19DE4077C3AB12C25F445782 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19DE49DDB51671EF188CD583 /* Build configuration list for PBXProject "MineSweep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19DE4496761BCB46B9344F87 /* Release */,
+				19DE4B7A8585353A929E88AA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 19DE4DD82D7BFB208C6828E9 /* Project object */;
+}
