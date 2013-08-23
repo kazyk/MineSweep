@@ -55,9 +55,11 @@
 
     sq.opened = YES;
     if (!sq.hasMine && sq.countOfNeighborMines == 0) {
-        [self enumerateNeighborsOfPoint:point usingBlock:^(BoardPoint p) {
-            [self openSquareAtPoint:p];
-        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+            [self enumerateNeighborsOfPoint:point usingBlock:^(BoardPoint p) {
+                [self openSquareAtPoint:p];
+            }];
+        });
     }
 }
 

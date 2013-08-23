@@ -68,8 +68,15 @@ static char kKVOContextOpened;
 {
     if (context == &kKVOContextOpened) {
         [self updateLabel];
-        [self.boxView removeFromSuperview];
-        self.boxView = nil;
+
+        if (self.square.isOpened) {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.boxView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [self.boxView removeFromSuperview];
+                self.boxView = nil;
+            }];
+        }
     }
 }
 
