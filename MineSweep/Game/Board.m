@@ -44,6 +44,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
             sq.point = p;
             [_squares addObject:sq];
         }];
+
+        [self layMinesIntoSquares:_squares count:10];
     }
     return self;
 }
@@ -153,6 +155,9 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         }
     }];
 
+    [self layMinesIntoSquares:newSquares count:10];
+    [self updateCountOfMines];
+
     [delegate boardDidDrop:self newSquares:newSquares];
 }
 
@@ -200,6 +205,20 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 - (NSUInteger)squareIndexAtPoint:(BoardPoint)point
 {
     return (NSUInteger)((point.y * self.horizontalSize) + point.x);
+}
+
+- (void)layMinesIntoSquares:(NSArray *)squares count:(NSInteger)countOfMines
+{
+    //乱数はてきとうです。
+
+    srand((unsigned int)time(NULL));
+
+    for (int i = 0; i < countOfMines; ++i) {
+        NSUInteger r = (NSUInteger)(rand() % (int)[squares count]);
+        ((Square *)squares[r]).hasMine = YES;
+    }
+
+    [self updateCountOfMines];
 }
 
 @end
