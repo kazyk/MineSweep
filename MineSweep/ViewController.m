@@ -13,6 +13,7 @@
 @interface ViewController ()
 @property (nonatomic) Game *game;
 @property (nonatomic) BoardView *boardView;
+@property (nonatomic) IBOutlet UILabel *turnLabel;
 @end
 
 
@@ -25,6 +26,8 @@
     BoardView *boardView = [[BoardView alloc] init];
     [self.view addSubview:boardView];
     self.boardView = boardView;
+
+    [self updateTurnLabel];
 
     [self setupGame];
 }
@@ -44,11 +47,18 @@
 - (IBAction)reset
 {
     [self setupGame];
+    [self updateTurnLabel];
 }
 
 - (IBAction)drop
 {
     [self.game.board drop];
+    [self updateTurnLabel];
+}
+
+- (void)updateTurnLabel
+{
+    self.turnLabel.text = [@(self.game.board.currentTurn) stringValue];
 }
 
 @end
