@@ -166,7 +166,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         }
     }];
 
-    [self layMinesIntoSquares:newSquares count:10];
+    [self layMinesIntoSquares:newSquares count:MIN((NSInteger)[newSquares count]/2, 10)];
     [self updateCountOfMines];
 
     [delegate boardDidDrop:self newSquares:newSquares];
