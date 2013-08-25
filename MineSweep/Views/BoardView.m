@@ -90,6 +90,8 @@ static const CGSize kSquareSize = {40, 40};
     }];
 
     [self.squareViews removeObjectsInArray:squareViewsToRemove];
+
+    NSLog(@"%@", self.board);
 }
 
 - (void)boardDidDrop:(Board *)board newSquares:(NSArray *)newSquares

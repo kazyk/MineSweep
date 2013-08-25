@@ -11,9 +11,9 @@
 
 - (NSString *)description
 {
-    if (!self.isOpened) {
-        return @"o";
-    }
+//    if (!self.isOpened) {
+//        return @"o";
+//    }
     if (self.hasMine) {
         return @"x";
     }
