@@ -189,7 +189,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         }
     }
     if (lineErased) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 300 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 750 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
             [self drop];
         });
     }
