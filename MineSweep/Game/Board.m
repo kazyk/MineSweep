@@ -211,6 +211,10 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 {
     //乱数はてきとうです。
 
+    if ([squares count] == 0) {
+        return;
+    }
+
     srand((unsigned int)time(NULL));
 
     for (int i = 0; i < countOfMines; ++i) {
