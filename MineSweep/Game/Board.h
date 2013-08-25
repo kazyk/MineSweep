@@ -42,5 +42,5 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y);
 
 @protocol BoardDelegate <NSObject>
 - (void)boardWillDrop:(Board *)board;
-- (void)boardDidDrop:(Board *)board;
+- (void)boardDidDrop:(Board *)board newSquares:(NSArray *)newSquares;
 @end

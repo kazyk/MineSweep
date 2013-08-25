@@ -45,8 +45,8 @@ static const CGSize kSquareSize = {40, 40};
     }
 
     [self.board enumerate:^(BoardPoint p) {
-        SquareView *view = [[SquareView alloc] initWithFrame:[self frameForSquareAtPoint:p]];
-        view.square = [self.board squareAtPoint:p];
+        SquareView *view = [[SquareView alloc] initWithFrame:[self frameForSquareAtPoint:p]
+                                                      square:[self.board squareAtPoint:p]];
         [self addSubview:view];
         [self.squareViews addObject:view];
     }];
@@ -88,10 +88,28 @@ static const CGSize kSquareSize = {40, 40};
             [v removeFromSuperview];
         }
     }];
+
+    [self.squareViews removeObjectsInArray:squareViewsToRemove];
 }
 
-- (void)boardDidDrop:(Board *)board
+- (void)boardDidDrop:(Board *)board newSquares:(NSArray *)newSquares
 {
+    for (Square *sq in newSquares) {
+        CGRect frame = [self frameForSquareAtPoint:sq.point];
+        frame.origin.y -= 300;
+
+        SquareView *squareView = [[SquareView alloc] initWithFrame:frame square:sq];
+        [self.squareViews addObject:squareView];
+        [self addSubview:squareView];
+    }
+
+    [UIView animateWithDuration:0.4 animations:^{
+        for (SquareView *squareView in self.squareViews) {
+            squareView.frame = [self frameForSquareAtPoint:squareView.square.point];
+        }
+    } completion:^(BOOL finished) {
+
+    }];
 
 }
 

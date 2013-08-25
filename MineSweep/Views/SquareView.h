@@ -4,14 +4,15 @@
 
 
 #import <Foundation/Foundation.h>
-#import "Board.h"
 
 @class Square;
 
 
 @interface SquareView : UIView
 
-@property (nonatomic) Square *square;
+- (instancetype)initWithFrame:(CGRect)frame square:(Square *)square;
+
+@property (nonatomic, readonly) Square *square;
 
 @property (nonatomic) UIColor *color;
 

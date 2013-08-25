@@ -141,7 +141,19 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         }
     }
 
-    [delegate boardDidDrop:self];
+    NSMutableArray *newSquares = [[NSMutableArray alloc] initWithCapacity:[self.squares count]];
+
+    [self enumerate:^(BoardPoint p) {
+        Square *sq = [self squareAtPoint:p];
+        if (sq.isOpened) {
+            Square *newSq = [[Square alloc] init];
+            newSq.point = p;
+            [newSquares addObject:newSq];
+            self.squares[[self squareIndexAtPoint:p]] = newSq;
+        }
+    }];
+
+    [delegate boardDidDrop:self newSquares:newSquares];
 }
 
 - (void)enumerateNeighborsOfPoint:(BoardPoint)point usingBlock:(void(^)(BoardPoint p))block
