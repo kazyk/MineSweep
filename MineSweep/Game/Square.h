@@ -4,9 +4,12 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Board.h"
 
 
 @interface Square : NSObject
+
+@property (nonatomic) BoardPoint point;
 
 @property (nonatomic, getter=isOpened) BOOL opened;
 

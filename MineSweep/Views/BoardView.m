@@ -4,8 +4,8 @@
 
 
 #import "BoardView.h"
-#import "Board.h"
 #import "SquareView.h"
+#import "Square.h"
 
 static const CGSize kSquareSize = {40, 40};
 
@@ -43,13 +43,16 @@ static const CGSize kSquareSize = {40, 40};
     }
 
     [self.board enumerate:^(BoardPoint p) {
-        CGRect frame = CGRectMake(p.x * kSquareSize.width, p.y * kSquareSize.height, kSquareSize.width, kSquareSize.height);
-        SquareView *view = [[SquareView alloc] initWithFrame:frame];
-        view.point = p;
+        SquareView *view = [[SquareView alloc] initWithFrame:[self frameForSquareAtPoint:p]];
         view.square = [self.board squareAtPoint:p];
         [self addSubview:view];
         [self.squareViews addObject:view];
     }];
+}
+
+- (CGRect)frameForSquareAtPoint:(BoardPoint)point
+{
+    return CGRectMake(point.x * kSquareSize.width, point.y * kSquareSize.height, kSquareSize.width, kSquareSize.height);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -59,7 +62,7 @@ static const CGSize kSquareSize = {40, 40};
     UIView *view = [self hitTest:p withEvent:event];
     if ([view isKindOfClass:[SquareView class]]) {
         SquareView *squareView = (SquareView *)view;
-        [self.board openSquareAtPoint:squareView.point];
+        [self.board openSquareAtPoint:squareView.square.point];
     }
 
     NSLog(@"%@", self.board);

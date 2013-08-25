@@ -4,6 +4,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Board.h"
 
 @class Board;
 
@@ -11,5 +12,7 @@
 @interface BoardView : UIView
 
 @property (nonatomic) Board *board;
+
+- (CGRect)frameForSquareAtPoint:(BoardPoint)point;
 
 @end

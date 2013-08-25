@@ -5,8 +5,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SquareView.h"
 #import "Square.h"
+#import "BoardView.h"
 
 static char kKVOContextOpened;
+static char kKVOContextPoint;
 
 
 @interface SquareView()
@@ -23,7 +25,9 @@ static char kKVOContextOpened;
     if (self) {
         self.color = [UIColor colorWithRed:0.1 green:0.6 blue:0.9 alpha:0.9];
         self.backgroundColor = [UIColor whiteColor];
+
         [self addObserver:self forKeyPath:@"square.opened" options:0 context:&kKVOContextOpened];
+        [self addObserver:self forKeyPath:@"square.point" options:0 context:&kKVOContextPoint];
     }
     return self;
 }
@@ -78,8 +82,19 @@ static char kKVOContextOpened;
                 self.boxView = nil;
             }];
         }
+    } else if (context == &kKVOContextPoint) {
+        if ([self boardView]) {
+            CGRect newFrame = [[self boardView] frameForSquareAtPoint:self.square.point];
+            [UIView animateWithDuration:0.3 animations:^{
+                self.frame = newFrame;
+            } completion:^(BOOL finished) {
+
+            }];
+        }
     }
 }
+
+#pragma mark - private methods
 
 - (void)updateLabel
 {
@@ -96,6 +111,11 @@ static char kKVOContextOpened;
     if (self.square.isOpened) {
         self.label.text = [self.square description];
     }
+}
+
+- (BoardView *)boardView
+{
+    return (BoardView *)self.superview;
 }
 
 @end

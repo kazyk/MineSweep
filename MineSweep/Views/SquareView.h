@@ -11,7 +11,6 @@
 
 @interface SquareView : UIView
 
-@property (nonatomic) BoardPoint point;
 @property (nonatomic) Square *square;
 
 @property (nonatomic) UIColor *color;

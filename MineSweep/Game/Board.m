@@ -6,6 +6,14 @@
 #import "Board.h"
 #import "Square.h"
 
+
+BoardPoint BoardPointMake(NSInteger x, NSInteger y)
+{
+    BoardPoint p = {x, y};
+    return p;
+}
+
+
 #define ASSERT_POINT(point) \
     NSParameterAssert(0 <= point.x && point.x < self.horizontalSize); \
     NSParameterAssert(0 <= point.y && point.y < self.verticalSize);
@@ -30,10 +38,12 @@
 
         const NSUInteger cap = (NSUInteger)(horizontalSize * verticalSize);
         _squares = [[NSMutableArray alloc] initWithCapacity:cap];
-        for (NSUInteger i = 0; i < cap; ++i) {
+
+        [self enumerate:^(BoardPoint p) {
             Square *sq = [[Square alloc] init];
+            sq.point = p;
             [_squares addObject:sq];
-        }
+        }];
     }
     return self;
 }
@@ -63,6 +73,18 @@
     }
 }
 
+- (void)replaceSquaresAtPoint:(BoardPoint)p1 withPoint:(BoardPoint)p2
+{
+    Square *sq1 = [self squareAtPoint:p1];
+    Square *sq2 = [self squareAtPoint:p2];
+
+    [self.squares replaceObjectAtIndex:[self squareIndexAtPoint:p2] withObject:sq1];
+    [self.squares replaceObjectAtIndex:[self squareIndexAtPoint:p1] withObject:sq2];
+
+    sq1.point = p2;
+    sq2.point = p1;
+}
+
 - (void)updateCountOfMines
 {
     [self enumerate:^(BoardPoint p) {
@@ -89,6 +111,30 @@
         for (NSInteger x = 0; x < h; ++x) {
             BoardPoint p = {x, y};
             block(p);
+        }
+    }
+}
+
+- (void)drop
+{
+    const NSInteger h = self.horizontalSize;
+    const NSInteger v = self.verticalSize;
+
+    for (NSInteger y = v-2; y >= 0; --y) {
+        for (NSInteger x = 0; x < h; ++x) {
+            Square *sq = [self squareAtPoint:BoardPointMake(x, y)];
+            if (sq.isOpened) {
+                continue;
+            }
+
+            BoardPoint p = {x, y + 1};
+            while (p.y < v && [self squareAtPoint:p].isOpened) {
+                p.y++;
+            }
+            p.y--;
+            if (y != p.y) {
+                [self replaceSquaresAtPoint:BoardPointMake(x, y) withPoint:p];
+            }
         }
     }
 }

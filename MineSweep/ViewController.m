@@ -46,4 +46,9 @@
     [self setupGame];
 }
 
+- (IBAction)drop
+{
+    [self.game.board drop];
+}
+
 @end

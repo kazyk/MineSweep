@@ -12,6 +12,8 @@ typedef struct {
     NSInteger x, y;
 } BoardPoint;
 
+BoardPoint BoardPointMake(NSInteger x, NSInteger y);
+
 
 @interface Board : NSObject
 
@@ -24,8 +26,12 @@ typedef struct {
 
 - (void)openSquareAtPoint:(BoardPoint)point;
 
+- (void)replaceSquaresAtPoint:(BoardPoint)p1 withPoint:(BoardPoint)p2;
+
 - (void)updateCountOfMines;
 
 - (void)enumerate:(void(^)(BoardPoint p))block;
+
+- (void)drop;
 
 @end
