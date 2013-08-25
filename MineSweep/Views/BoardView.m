@@ -10,7 +10,7 @@
 static const CGSize kSquareSize = {40, 40};
 
 
-@interface BoardView()
+@interface BoardView() <BoardDelegate>
 @property (nonatomic) NSMutableArray *squareViews;
 @end
 
@@ -36,7 +36,9 @@ static const CGSize kSquareSize = {40, 40};
     if (_board == board) {
         return;
     }
+    _board.delegate = nil;
     _board = board;
+    board.delegate = self;
 
     for (UIView *view in self.squareViews) {
         [view removeFromSuperview];
@@ -66,6 +68,31 @@ static const CGSize kSquareSize = {40, 40};
     }
 
     NSLog(@"%@", self.board);
+}
+
+#pragma mark - BoardDelegate
+
+- (void)boardWillDrop:(Board *)board
+{
+    //openedなやつを消す
+    NSPredicate *opened = [NSPredicate predicateWithBlock:^BOOL(SquareView *evaluatedObject, NSDictionary *bindings) {
+        return (evaluatedObject.square.isOpened);
+    }];
+    NSArray *squareViewsToRemove = [self.squareViews filteredArrayUsingPredicate:opened];
+    [UIView animateWithDuration:0.3 animations:^{
+        for (UIView *v in squareViewsToRemove) {
+            v.alpha = 0;
+        }
+    } completion:^(BOOL finished) {
+        for (UIView *v in squareViewsToRemove) {
+            [v removeFromSuperview];
+        }
+    }];
+}
+
+- (void)boardDidDrop:(Board *)board
+{
+
 }
 
 @end

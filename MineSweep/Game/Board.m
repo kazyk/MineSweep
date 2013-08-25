@@ -117,6 +117,9 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 
 - (void)drop
 {
+    id<BoardDelegate> delegate = self.delegate;
+    [delegate boardWillDrop:self];
+
     const NSInteger h = self.horizontalSize;
     const NSInteger v = self.verticalSize;
 
@@ -137,6 +140,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
             }
         }
     }
+
+    [delegate boardDidDrop:self];
 }
 
 - (void)enumerateNeighborsOfPoint:(BoardPoint)point usingBlock:(void(^)(BoardPoint p))block

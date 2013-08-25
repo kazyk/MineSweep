@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 @class Square;
+@protocol BoardDelegate;
 
 
 typedef struct {
@@ -22,6 +23,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y);
 @property (nonatomic, readonly) NSInteger horizontalSize;
 @property (nonatomic, readonly) NSInteger verticalSize;
 
+@property (nonatomic, weak) id<BoardDelegate> delegate;
+
 - (Square *)squareAtPoint:(BoardPoint)point;
 
 - (void)openSquareAtPoint:(BoardPoint)point;
@@ -34,4 +37,10 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y);
 
 - (void)drop;
 
+@end
+
+
+@protocol BoardDelegate <NSObject>
+- (void)boardWillDrop:(Board *)board;
+- (void)boardDidDrop:(Board *)board;
 @end
