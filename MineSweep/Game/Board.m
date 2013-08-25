@@ -162,6 +162,29 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
     [self updateCountOfMines];
 
     [delegate boardDidDrop:self newSquares:newSquares];
+
+    //ラインそろったら消す
+    BOOL lineErased = NO;
+    for (NSInteger y = 0; y < v; ++y) {
+        BOOL all = YES;
+        for (NSInteger x = 0; x < h; ++x) {
+            if (![self squareAtPoint:BoardPointMake(x, y)].hasMine) {
+                all = NO;
+                break;
+            }
+        }
+        if (all) {
+            for (NSInteger x = 0; x < h; ++x) {
+                [self squareAtPoint:BoardPointMake(x, y)].opened = YES;
+            }
+            lineErased = YES;
+        }
+    }
+    if (lineErased) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 300 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+            [self drop];
+        });
+    }
 }
 
 - (void)enumerateNeighborsOfPoint:(BoardPoint)point usingBlock:(void(^)(BoardPoint p))block
