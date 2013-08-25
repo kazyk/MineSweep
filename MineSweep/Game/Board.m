@@ -21,6 +21,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 
 @interface Board()
 @property (nonatomic, readonly) NSMutableArray *squares;
+@property (nonatomic) NSInteger undefiniteMineCount;
 @end
 
 
@@ -45,7 +46,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
             [_squares addObject:sq];
         }];
 
-        [self layMinesIntoSquares:_squares count:10];
+        self.undefiniteMineCount = 10;
     }
     return self;
 }
@@ -65,8 +66,12 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         return;
     }
 
+    if (sq.mineState == kMineStateUndifinite) {
+        [self resolveUndefiniteMinesWithSafePoint:point];
+    }
+
     sq.opened = YES;
-    if (!sq.hasMine && sq.countOfNeighborMines == 0) {
+    if (sq.mineState == kMineStateNoMine && sq.countOfNeighborMines == 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
             [self enumerateNeighborsOfPoint:point usingBlock:^(BoardPoint p) {
                 [self openSquareAtPoint:p];
@@ -93,7 +98,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         __block NSInteger count = 0;
 
         [self enumerateNeighborsOfPoint:p usingBlock:^(BoardPoint pp) {
-            if ([self squareAtPoint:pp].hasMine) {
+            if ([self squareAtPoint:pp].mineState == kMineStateHasMine) {
                 ++count;
             }
         }];
@@ -127,6 +132,9 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 {
     id<BoardDelegate> delegate = self.delegate;
     [delegate boardWillDrop:self];
+
+    //未確定地雷があったら確定させる
+    [self resolveUndefiniteMinesWithSafePoint:BoardPointMake(-1, -1)];
 
     [self checkPerfectDrop];
 
@@ -166,22 +174,21 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         }
     }];
 
-    [self layMinesIntoSquares:newSquares count:MIN((NSInteger)[newSquares count]/2, 10)];
-    [self updateCountOfMines];
+    self.undefiniteMineCount += MIN((NSInteger)[newSquares count]/2, 10);
 
     [delegate boardDidDrop:self newSquares:newSquares];
 
     //ラインそろったら消す
     BOOL lineErased = NO;
     for (NSInteger y = 0; y < v; ++y) {
-        BOOL all = YES;
+        BOOL allHasMine = YES;
         for (NSInteger x = 0; x < h; ++x) {
-            if (![self squareAtPoint:BoardPointMake(x, y)].hasMine) {
-                all = NO;
+            if ([self squareAtPoint:BoardPointMake(x, y)].mineState != kMineStateHasMine) {
+                allHasMine = NO;
                 break;
             }
         }
-        if (all) {
+        if (allHasMine) {
             for (NSInteger x = 0; x < h; ++x) {
                 [self squareAtPoint:BoardPointMake(x, y)].opened = YES;
             }
@@ -241,24 +248,6 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
     return (NSUInteger)((point.y * self.horizontalSize) + point.x);
 }
 
-- (void)layMinesIntoSquares:(NSArray *)squares count:(NSInteger)countOfMines
-{
-    //乱数はてきとうです。
-
-    if ([squares count] == 0) {
-        return;
-    }
-
-    srand((unsigned int)time(NULL));
-
-    for (int i = 0; i < countOfMines; ++i) {
-        NSUInteger r = (NSUInteger)(rand() % (int)[squares count]);
-        ((Square *)squares[r]).hasMine = YES;
-    }
-
-    [self updateCountOfMines];
-}
-
 - (void)checkPerfectDrop
 {
     __block BOOL perfect = YES;
@@ -268,7 +257,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 
     [self enumerate:^(BoardPoint p, BOOL *stop) {
         Square *sq = [self squareAtPoint:p];
-        if (!sq.isOpened && !sq.hasMine) {
+        if (!sq.isOpened && sq.mineState != kMineStateHasMine) {
             perfect = NO;
             *stop = YES;
         }
@@ -282,6 +271,43 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
             }
         }];
     }
+}
+
+//不確定状態になっているsquareの地雷状態を固定、
+//ただし（できるだけ）pointに地雷が埋められるのを避ける
+- (void)resolveUndefiniteMinesWithSafePoint:(BoardPoint)point
+{
+    NSArray *undefiniteSquares = [self.squares filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Square *square, NSDictionary *bindings) {
+        return (square.mineState == kMineStateUndifinite);
+    }]];
+    const NSUInteger undefiniteCount = [undefiniteSquares count];
+
+    if (undefiniteCount == 0) {
+        return;
+    }
+
+    srand((unsigned int)time(NULL));
+
+    for (int i = 0; i < self.undefiniteMineCount; ++i) {
+        NSUInteger r = (NSUInteger)(rand() % (int)undefiniteCount);
+        Square *sq = undefiniteSquares[r];
+
+        //pointに地雷が埋め込まれるのを回避
+        if (sq.point.x == point.x && sq.point.y == point.y && undefiniteCount > 1) {
+            --i;
+            continue;
+        }
+        sq.mineState = kMineStateHasMine;
+    }
+
+    for (Square *sq in undefiniteSquares) {
+        if (sq.mineState == kMineStateUndifinite) {
+            sq.mineState = kMineStateNoMine;
+        }
+    }
+
+    [self updateCountOfMines];
+    self.undefiniteMineCount = 0;
 }
 
 @end

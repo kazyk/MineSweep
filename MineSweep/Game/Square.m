@@ -11,11 +11,11 @@
 
 - (NSString *)description
 {
-//    if (!self.isOpened) {
-//        return @"o";
-//    }
-    if (self.hasMine) {
+    if (self.mineState == kMineStateHasMine) {
         return @"x";
+    }
+    if (self.mineState == kMineStateUndifinite) {
+        return @"?";
     }
     if (self.countOfNeighborMines == 0) {
         return @" ";
