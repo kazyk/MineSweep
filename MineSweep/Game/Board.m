@@ -133,9 +133,6 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
     id<BoardDelegate> delegate = self.delegate;
     [delegate boardWillDrop:self];
 
-    //未確定地雷があったら確定させる
-    [self resolveUndefiniteMinesWithSafePoint:BoardPointMake(-1, -1)];
-
     [self checkPerfectDrop];
 
     ++self.currentTurn;
