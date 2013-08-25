@@ -23,6 +23,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y);
 @property (nonatomic, readonly) NSInteger horizontalSize;
 @property (nonatomic, readonly) NSInteger verticalSize;
 
+@property (nonatomic) NSInteger currentTurn;
+
 @property (nonatomic, weak) id<BoardDelegate> delegate;
 
 - (Square *)squareAtPoint:(BoardPoint)point;

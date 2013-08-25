@@ -122,6 +122,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
     id<BoardDelegate> delegate = self.delegate;
     [delegate boardWillDrop:self];
 
+    ++self.currentTurn;
+
     const NSInteger h = self.horizontalSize;
     const NSInteger v = self.verticalSize;
 
@@ -150,6 +152,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         if (sq.isOpened) {
             Square *newSq = [[Square alloc] init];
             newSq.point = p;
+            newSq.turn = self.currentTurn;
             [newSquares addObject:newSq];
             self.squares[[self squareIndexAtPoint:p]] = newSq;
         }

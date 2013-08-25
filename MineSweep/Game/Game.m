@@ -5,7 +5,6 @@
 
 #import "Game.h"
 #import "Board.h"
-#import "Square.h"
 
 
 @implementation Game

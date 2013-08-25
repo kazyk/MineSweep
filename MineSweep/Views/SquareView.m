@@ -10,6 +10,7 @@ static char kKVOContextOpened;
 
 
 @interface SquareView()
+@property (nonatomic) UIColor *color;
 @property (nonatomic) UILabel *label;
 @property (nonatomic) UIView *boxView;
 @end
@@ -25,7 +26,10 @@ static char kKVOContextOpened;
     if (self) {
         _square = square;
 
-        self.color = [UIColor colorWithRed:0.1 green:0.6 blue:0.9 alpha:0.9];
+        self.color = (square.turn & 1) ?
+                [UIColor colorWithRed:0.9 green:0.3 blue:0.1 alpha:0.9] :
+                [UIColor colorWithRed:0.1 green:0.6 blue:0.9 alpha:0.9];
+
         self.backgroundColor = [UIColor whiteColor];
 
         [self addObserver:self forKeyPath:@"square.opened" options:0 context:&kKVOContextOpened];

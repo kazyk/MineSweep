@@ -17,4 +17,6 @@
 
 @property (nonatomic) NSInteger countOfNeighborMines;
 
+@property (nonatomic) NSInteger turn;
+
 @end

@@ -14,6 +14,4 @@
 
 @property (nonatomic, readonly) Square *square;
 
-@property (nonatomic) UIColor *color;
-
 @end
