@@ -39,7 +39,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         const NSUInteger cap = (NSUInteger)(horizontalSize * verticalSize);
         _squares = [[NSMutableArray alloc] initWithCapacity:cap];
 
-        [self enumerate:^(BoardPoint p) {
+        [self enumerate:^(BoardPoint p, BOOL *stop) {
             Square *sq = [[Square alloc] init];
             sq.point = p;
             [_squares addObject:sq];
@@ -89,7 +89,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 
 - (void)updateCountOfMines
 {
-    [self enumerate:^(BoardPoint p) {
+    [self enumerate:^(BoardPoint p, BOOL *stop) {
         __block NSInteger count = 0;
 
         [self enumerateNeighborsOfPoint:p usingBlock:^(BoardPoint pp) {
@@ -102,17 +102,23 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
     }];
 }
 
-- (void)enumerate:(void(^)(BoardPoint p))block
+- (void)enumerate:(void(^)(BoardPoint p, BOOL *stop))block
 {
     NSParameterAssert(block);
 
     const NSInteger v = self.verticalSize;
     const NSInteger h = self.horizontalSize;
 
+    BOOL stop = NO;
+
     for (NSInteger y = 0; y < v; ++y) {
         for (NSInteger x = 0; x < h; ++x) {
             BoardPoint p = {x, y};
-            block(p);
+            block(p, &stop);
+
+            if (stop) {
+                return;
+            }
         }
     }
 }
@@ -121,6 +127,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 {
     id<BoardDelegate> delegate = self.delegate;
     [delegate boardWillDrop:self];
+
+    [self checkPerfectDrop];
 
     ++self.currentTurn;
 
@@ -147,7 +155,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
 
     NSMutableArray *newSquares = [[NSMutableArray alloc] initWithCapacity:[self.squares count]];
 
-    [self enumerate:^(BoardPoint p) {
+    [self enumerate:^(BoardPoint p, BOOL *stop) {
         Square *sq = [self squareAtPoint:p];
         if (sq.isOpened) {
             Square *newSq = [[Square alloc] init];
@@ -249,6 +257,31 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
     }
 
     [self updateCountOfMines];
+}
+
+- (void)checkPerfectDrop
+{
+    __block BOOL perfect = YES;
+
+    //空いてないsquareが全部地雷だったらPerfectDropになり、
+    //squareの色が変わる
+
+    [self enumerate:^(BoardPoint p, BOOL *stop) {
+        Square *sq = [self squareAtPoint:p];
+        if (!sq.isOpened && !sq.hasMine) {
+            perfect = NO;
+            *stop = YES;
+        }
+    }];
+
+    if (perfect) {
+        [self enumerate:^(BoardPoint p, BOOL *stop) {
+            Square *sq= [self squareAtPoint:p];
+            if (!sq.isOpened) {
+                sq.mineDetected = YES;
+            }
+        }];
+    }
 }
 
 @end

@@ -44,7 +44,7 @@ static const CGSize kSquareSize = {40, 40};
         [view removeFromSuperview];
     }
 
-    [self.board enumerate:^(BoardPoint p) {
+    [self.board enumerate:^(BoardPoint p, BOOL *stop) {
         SquareView *view = [[SquareView alloc] initWithFrame:[self frameForSquareAtPoint:p]
                                                       square:[self.board squareAtPoint:p]];
         [self addSubview:view];

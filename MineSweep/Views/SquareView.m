@@ -7,6 +7,7 @@
 #import "Square.h"
 
 static char kKVOContextOpened;
+static char kKVOContextDetected;
 
 
 @interface SquareView()
@@ -33,6 +34,7 @@ static char kKVOContextOpened;
         self.backgroundColor = [UIColor whiteColor];
 
         [self addObserver:self forKeyPath:@"square.opened" options:0 context:&kKVOContextOpened];
+        [self addObserver:self forKeyPath:@"square.mineDetected" options:0 context:&kKVOContextDetected];
     }
     return self;
 }
@@ -40,23 +42,14 @@ static char kKVOContextOpened;
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"square.opened" context:&kKVOContextOpened];
+    [self removeObserver:self forKeyPath:@"square.mineDetected" context:&kKVOContextDetected];
 }
 
 - (void)willMoveToWindow:(UIWindow *)newWindow
 {
     [super willMoveToWindow:newWindow];
     if (newWindow) {
-        //setup
-        [self.boxView removeFromSuperview];
-        self.boxView = [[UIView alloc] initWithFrame:CGRectInset(self.bounds, 4, 4)];
-        self.boxView.userInteractionEnabled = NO;   //touchEventとられないようにする
-        [self addSubview:self.boxView];
-
-        if (!self.square.isOpened) {
-            self.boxView.layer.borderColor = self.color.CGColor;
-            self.boxView.layer.borderWidth = 0.5;
-            self.boxView.layer.backgroundColor = [self.color colorWithAlphaComponent:0.3].CGColor;
-        }
+        [self updateBoxView];
     }
 }
 
@@ -92,10 +85,29 @@ static char kKVOContextOpened;
                 self.boxView = nil;
             }];
         }
+    } else if (context == &kKVOContextDetected) {
+        if (self.square.mineDetected) {
+            self.color = [UIColor colorWithRed:0.9 green:0.8 blue:0.1 alpha:0.9];
+            [self updateBoxView];
+        }
     }
 }
 
 #pragma mark - private methods
+
+- (void)updateBoxView
+{
+    [self.boxView removeFromSuperview];
+    self.boxView = [[UIView alloc] initWithFrame:CGRectInset(self.bounds, 4, 4)];
+    self.boxView.userInteractionEnabled = NO;   //touchEventとられないようにする
+    [self addSubview:self.boxView];
+
+    if (!self.square.isOpened) {
+        self.boxView.layer.borderColor = self.color.CGColor;
+        self.boxView.layer.borderWidth = 0.5;
+        self.boxView.layer.backgroundColor = [self.color colorWithAlphaComponent:0.3].CGColor;
+    }
+}
 
 - (void)updateLabel
 {

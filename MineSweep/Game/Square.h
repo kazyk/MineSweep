@@ -19,4 +19,6 @@
 
 @property (nonatomic) NSInteger turn;
 
+@property (nonatomic) BOOL mineDetected;
+
 @end

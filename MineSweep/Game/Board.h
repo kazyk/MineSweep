@@ -35,7 +35,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y);
 
 - (void)updateCountOfMines;
 
-- (void)enumerate:(void(^)(BoardPoint p))block;
+- (void)enumerate:(void(^)(BoardPoint p, BOOL *stop))block;
 
 - (void)drop;
 
