@@ -25,6 +25,8 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y);
 
 @property (nonatomic) NSInteger currentTurn;
 
+@property (nonatomic) NSInteger failedTimes;
+
 @property (nonatomic, weak) id<BoardDelegate> delegate;
 
 - (Square *)squareAtPoint:(BoardPoint)point;

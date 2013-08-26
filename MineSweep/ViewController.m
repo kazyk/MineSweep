@@ -10,10 +10,13 @@
 #import "Game.h"
 #import "BoardView.h"
 
+static char kKVOContextFailedTimes;
+
 @interface ViewController ()
 @property (nonatomic) Game *game;
 @property (nonatomic) BoardView *boardView;
 @property (nonatomic) IBOutlet UILabel *turnLabel;
+@property (nonatomic) IBOutlet UILabel *failedLabel;
 @end
 
 
@@ -28,8 +31,11 @@
     self.boardView = boardView;
 
     [self updateTurnLabel];
+    self.failedLabel.text = @"";
 
     [self setupGame];
+
+    [self addObserver:self forKeyPath:@"game.board.failedTimes" options:0 context:&kKVOContextFailedTimes];
 }
 
 - (void)setupGame
@@ -59,6 +65,18 @@
 - (void)updateTurnLabel
 {
     self.turnLabel.text = [@(self.game.board.currentTurn) stringValue];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == &kKVOContextFailedTimes) {
+        //失敗数だけxならべる
+        NSMutableString *s = [[NSMutableString alloc] init];
+        for (int i = 0; i < self.game.board.failedTimes; ++i) {
+            [s appendString:@"x"];
+        }
+        self.failedLabel.text = s;
+    }
 }
 
 @end

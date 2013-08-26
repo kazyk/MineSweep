@@ -71,6 +71,10 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         [self resolveUndefiniteMinesWithSafePoint:point];
     }
 
+    if (sq.mineState == kMineStateHasMine) {
+        ++self.failedTimes;
+    }
+
     sq.opened = YES;
     if (sq.mineState == kMineStateNoMine && sq.countOfNeighborMines == 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 100 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
