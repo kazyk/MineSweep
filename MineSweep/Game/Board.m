@@ -46,6 +46,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
             [_squares addObject:sq];
         }];
 
+        //初期地雷数
         self.undefiniteMineCount = 10;
     }
     return self;
@@ -171,7 +172,7 @@ BoardPoint BoardPointMake(NSInteger x, NSInteger y)
         }
     }];
 
-    self.undefiniteMineCount += MIN((NSInteger)[newSquares count]/2, 10);
+    self.undefiniteMineCount += MIN((NSInteger)[newSquares count]/3, 10);
 
     [delegate boardDidDrop:self newSquares:newSquares];
 
